@@ -1,1 +1,1 @@
-# pi-switcher.github.io
+# Pi crypto switcher
