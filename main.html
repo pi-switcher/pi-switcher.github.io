@@ -5,7 +5,8 @@
 <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0, minimal-ui">
 
 <script src="https://sdk.minepi.com/pi-sdk.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/stellar-sdk/9.1.0/stellar-sdk.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/stellar-sdk/9.1.0/stellar-sdk.min.js"></script>
+<script defer src="src/js/alchemy-bundle.js"></script>
 
 <script>
 
@@ -101,6 +102,23 @@ For <span style="font-size:20px;color:gold">Maximum Security</span> you need a p
 <div id="load" style="position:absolute;font:bold 22px Arial;color:white;width:100%;text-align:center;top:calc(100% * 0.85)">loading...</div>
 
 <div id="c" style="position:absolute;top:0;left:0;width:100%;height:100%"></div>
+
+
+<script
+  defer
+  src="https://launchpad.heymint.xyz/embed.js"
+  data-project-id="24842"
+  data-chain="POLYGON_MUMBAI"
+></script>
+
+<div id="wallet">
+<span id="address"></span>
+<span class="lpmbw"><button class="c-kLhKbD" style="background-color: rgb(108, 93, 211); color: rgb(244, 244, 244); font-family: Arial; border-radius: 8px;" onclick="refresh=true">Refresh</button></span>
+<br><br>
+</div>
+
+<div id="nfts" style="font-size:24px;font-color:black"></div>
+<br><br>
 
 
 <script>
