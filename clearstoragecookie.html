@@ -1,0 +1,66 @@
+﻿<html>
+<body>
+
+<div>
+<p><a id="s"></a></p>
+</div>
+
+<script>
+
+function supports_html5_storage(){
+  try{
+    return 'localStorage' in window && window['localStorage']!==null;
+  }catch(e){
+    return false;
+  }
+}
+
+function QueryVar(variable)
+{
+       var query = window.location.search.substring(1);
+       var vars = query.split("&");
+       for (var i=0;i<vars.length;i++) {
+               var pair = vars[i].split("=");
+               if(pair[0] == variable){return pair[1];}
+       }
+       return(false);
+}
+
+function s1000(s){
+if(s==null)return s;
+return s.substr(0,2000);
+}
+
+
+</script>
+
+
+      <script>
+         function removeCookies() {
+            var res = document.cookie;
+            var multiple = res.split(";");
+            for(var i = 0; i < multiple.length; i++) {
+               var key = multiple[i].split("=");
+               document.cookie = key[0]+" =; expires = Thu, 01 Jan 1970 00:00:00 UTC";
+            }
+         }
+      </script>
+
+
+<script>
+
+if(!supports_html5_storage()){
+alert("localstorage not supported");
+}
+else{
+
+localStorage.clear();
+removeCookies();
+alert("cleared");
+
+}
+
+</script>
+
+</body>
+</html>
