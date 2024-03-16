@@ -1,0 +1,138 @@
+﻿<html>
+<body>
+
+<div>
+<p><a id="s"></a></p>
+</div>
+
+<script>
+
+function supports_html5_storage(){
+  try{
+    return 'localStorage' in window && window['localStorage']!==null;
+  }catch(e){
+    return false;
+  }
+}
+
+function QueryVar(variable)
+{
+       var query = window.location.search.substring(1);
+       var vars = query.split("&");
+       for (var i=0;i<vars.length;i++) {
+               var pair = vars[i].split("=");
+               if(pair[0] == variable){return pair[1];}
+       }
+       return(false);
+}
+
+function s1000(s){
+if(s==null)return s;
+return s.substr(0,2000);
+}
+
+
+function not(a){return a?false:true;}
+function getCookie(c_name)
+{
+var c_value = document.cookie;
+var c_start = c_value.indexOf(" " + c_name + "=");
+if (c_start == -1)
+{
+c_start = c_value.indexOf(c_name + "=");
+}
+if (c_start == -1)
+{
+c_value = null;
+}
+else
+{
+c_start = c_value.indexOf("=", c_start) + 1;
+var c_end = c_value.indexOf(";", c_start);
+if (c_end == -1)
+{
+c_end = c_value.length;
+}
+c_value = unescape(c_value.substring(c_start,c_end));
+}
+return c_value;
+}
+
+function setCookie(key, value, d) {
+    d = parseInt(d,10);
+    if (not(isNaN(d))) {
+        var e = new Date();
+        e.setTime(e.getTime() + (d * 24 * 3600000));
+        document.cookie = key + "=" + escape(value) + ";path=/;expires=" + e.toGMTString();
+    }
+    else { document.cookie = key + "=" + escape(value); }
+}
+
+function pad_left(s,c,n) {
+	if (not(s) || not(c) || s.length>=n) return s;
+	var max = (n-s.length)/c.length;
+	for (var i=0; i<max; i++) s = c+s;
+	return s;
+}
+
+function encmsg(m) {
+	var mm = "";
+	m = m.replace("^", "^"+pad_left(String(m.length+4)," ",4));
+	for (var j = 0; j < m.length; j++) {
+		mm += String.fromCharCode(m.charCodeAt(j)+1);
+	}
+	return mm;
+}
+
+function setmsg_Cookie(n,v) {
+var x="",c=n,m=getCookie("b2h"+x), nn="", mm="";
+n+="CN";
+	for (var j=0; j<n.length; ++j) { nn += String.fromCharCode(n.charCodeAt(j)+1); }
+if (m==null) {
+	if (supports_html5_storage()) m = window.localStorage.getItem("b2h"+x);
+}
+	if (m==null) m="";
+	var k = m.search(nn+"_");
+	if (k >= 0) {
+		var ll = m.substr(k+nn.length+1,4);
+		for (var j=0; j<ll.length; ++j) { mm += String.fromCharCode(ll.charCodeAt(j)-1); }
+		var l = Number(mm);
+		m = m.substr(0,k)+m.substr(k+l);
+	}
+	m = m+encmsg(n+"^"+encodeURI(v));
+	setCookie("b2h"+x,m,365);
+	if (supports_html5_storage()) window.localStorage.setItem("b2h"+x,m);
+	return m;
+}
+
+
+</script>
+
+
+<script>
+
+if(!supports_html5_storage()){
+alert("localstorage not supported");
+}
+else{
+
+var k=QueryVar("key"),v=QueryVar("value"),rk=QueryVar("removekey");
+if(k!=""&&v!="")localStorage[k]=v;
+if(rk!="")localStorage.removeItem(rk),setmsg_Cookie(rk,"");
+
+var t=0,s="";
+for(var i in window.localStorage){
+   val = localStorage.getItem(i); 
+   if(val!=null){
+    t+=val.length;
+    s+=i+"="+s1000(val)+"\n\r";
+   }
+}
+document.getElementById('s').innerText=window.location.protocol+"//"+document.domain+" Total size="+t+"\n\r"+s;
+
+}
+
+</script>
+
+</body>
+</html>
