@@ -1,1 +1,1 @@
-# Pi crypto switcher
+# Pi Exchange switcher
